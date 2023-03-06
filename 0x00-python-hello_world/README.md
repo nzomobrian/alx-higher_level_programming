@@ -1,5 +1,4 @@
-| #!/usr/bin/python3 |
-|  | import this |0x00. Python - Hello, World
+0x00. Python - Hello, World
 ===========================
 
 Python
