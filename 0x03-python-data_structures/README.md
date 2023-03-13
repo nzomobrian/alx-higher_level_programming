@@ -4,7 +4,7 @@
 Python
 
 -   By: Guillaume
--   Weight: 10
+-   Weight: 1
 
 Resources
 ---------
