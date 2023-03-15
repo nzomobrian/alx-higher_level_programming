@@ -1,68 +1,20 @@
-#include <Python.h>
-#include <stdio.h>
+#!/usr/bin/python3
+def roman_to_int(roman_string):
+    """ converts a Roman numeral to an integer."""
+    romans = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    if (roman_string is None) or (type(roman_string) is not str):
+        return 0
 
-/**
- * print_python_bytes - Prints the bytes of a python bytes object
- * @p: Pointer to the Python object
- */
-void print_python_bytes(PyObject *p)
-{
-	char *bytes;
-	int size, i;
+    number = len(roman_string)
+    value_int = romans[roman_string[number-1]]
+    for i in range(number - 1, 0, -1):
+        current_value = romans[roman_string[i]]
+        previous_value = romans[roman_string[i-1]]
 
-	printf("[.] bytes object info\n");
+        if previous_value >= current_value:
+            value_int += previous_value
+        else:
+            value_int -= previous_value
 
-	if (!PyBytes_Check(p))
-	{
-		printf("  [ERROR] Invalid Bytes Object\n");
-		return;
-	}
+    return value_int
 
-	size = (int)PyBytes_Size(p);
-	printf("  size: %d\n", size);
-	
-	bytes = PyBytes_AsString(p);
-
-	printf("  trying string: %s\n", bytes);
-
-	size = size >= 10 ? 10 : size + 1;
-	printf("  first %d bytes: ", size);
-	for (i = 0; i < size; ++i)
-	{
-		printf("%02hhx", bytes[i]);
-		if (i != size - 1)
-			printf(" ");
-	}
-	printf("\n");
-}
-
-/**
- * print_python_list - Prints a python list object
- * @p: Pointer to the Python object
- */
-void print_python_list(PyObject *p)
-{
-	int size, alloc;
-	PyListObject *l;
-	int i;
-	const char *type;
-	PyObject *item;
-
-	l = (PyListObject *)p;
-
-	size = (int)PyList_Size(p);
-	alloc = (int)(l->allocated);
-
-	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %d\n", size);
-	printf("[*] Allocated = %d\n", alloc);
-
-	for (i = 0; i < size; ++i)
-	{
-		item = (PyObject *)l->ob_item[i];
-		type = (item->ob_type)->tp_name;
-		printf("Element %d: %s\n", i, type);
-		if (strcmp(type, "bytes") == 0)
-			print_python_bytes(item);
-	}
-}
