@@ -6,7 +6,7 @@ Python OOP
 -   By: Guillaume
 
 Resources
----------
+--------
 
 **Read or watch**:
 
