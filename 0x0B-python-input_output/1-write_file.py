@@ -1,16 +1,13 @@
 #!/usr/bin/python3
-"""This module contains a function to count the number of lines in a given
-file"""
+"""This module contains a function which writes given text to a given file"""
 
 
-def number_of_lines(filename=""):
-    """This function returns the number of lines in a given file
+def write_file(filename="", text=""):
+    """Writes `text` to `filename`
 
     Args:
-        filename (str): The name of the file to be analyzed
-
-    Returns:
-        int: The number of lines in the file
+        filename (str): The name of the file to write to
+        text (str): The text to write to the file
     """
-    with open(filename, "r") as f:
-        return sum(1 for x in f)
+    with open(filename, "w") as f:
+        return f.write(text)
