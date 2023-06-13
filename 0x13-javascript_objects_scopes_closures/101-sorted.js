@@ -1,13 +1,13 @@
 #!/usr/bin/node
 const dict = require('./101-data').dict;
-const dKeys = Object.keys(dict);
-const values = Object.values(dict);
-let matched;
-const result = {};
-// loop over the values
-for (let i = 0; i < values.length; i++) {
-  result[JSON.stringify(values[i])] = [];
-  matched = dKeys.filter(key => dict[key] === values[i]);
-  matched.forEach(item => result[JSON.stringify(values[i])].push(item));
+
+const ndict = {};
+for (const key of Object.keys(dict)) {
+  if (!(dict[key] in ndict)) {
+    ndict[dict[key]] = [key];
+  } else {
+    ndict[dict[key]].push(key);
+  }
 }
-console.log(result);
+
+console.log(ndict);
