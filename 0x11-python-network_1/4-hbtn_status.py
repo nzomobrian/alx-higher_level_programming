@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""fetches https://intranet.hbtn.io/status."""
+"""This module gets the body of the holberton page"""
 import requests
 
 
 if __name__ == "__main__":
-    r = requests.get("https://intranet.hbtn.io/status")
-    print("Body response:")
-    print("\t- type: {}".format(type(r.text)))
-    print("\t- content: {}".format(r.text))
+    res = requests.get("https://intranet.hbtn.io/status")
+    print("Body response:\n\t- type: {}\n\t- content: {}".format(
+        type(res.text), res.text))
